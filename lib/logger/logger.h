@@ -6,7 +6,10 @@ class Log {
         typedef int Level;
         typedef const char* Header;
 
-        Log(const Level level = INFO) : m_log_level(level) {}
+        static Log& get(Level level = INFO) {
+            static Log logger(level);
+            return logger;
+        }
 
         static const Level EMERG = 0;
         static const Level ALERT = 1;
@@ -42,6 +45,12 @@ class Log {
         static Header m_info_header;
         static Header m_debug_header;
         static Header m_silly_header;
+
+        Log(const Level level = INFO) : m_log_level(level) {}
+        Log(const Log&) = delete;
+        void operator=(const Log&) = delete;
 };
+
+static Log& make_logger();
 
 #endif

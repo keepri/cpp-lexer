@@ -6,13 +6,8 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    Log logger(Log::DEBUG);
-
-    tm *date = date_now();
-    const char *time = parse_time_str(date);
-    log_time(time);
-
-    logger.info("Hello, world!");
+    Log& log= Log::get();
+    log.info("Hello, world!");
 
     return 0;
 }
