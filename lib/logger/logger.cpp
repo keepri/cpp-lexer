@@ -30,7 +30,7 @@ void Log::print(const char *message, const char *header) {
 }
 
 void Log::emerg(const char *message) {
-    if (m_log_level >= EMERG) {
+    if (m_log_level >= EMERGENCY) {
         Log::print(message, m_emerg_header);
     }
 }
@@ -42,7 +42,7 @@ void Log::alert(const char *message) {
 }
 
 void Log::crit(const char *message) {
-    if (m_log_level >= CRIT) {
+    if (m_log_level >= CRITICAL) {
         Log::print(message, m_crit_header);
     }
 }

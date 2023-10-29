@@ -6,14 +6,14 @@ class Log {
         typedef int Level;
         typedef const char* Header;
 
-        static Log& get(Level level = INFO) {
-            static Log logger(level);
-            return logger;
+        static Log& get() {
+            static Log log;
+            return log;
         }
 
-        static const Level EMERG = 0;
+        static const Level EMERGENCY = 0;
         static const Level ALERT = 1;
-        static const Level CRIT = 2;
+        static const Level CRITICAL = 2;
         static const Level ERROR = 3;
         static const Level WARNING = 4;
         static const Level NOTICE = 5;
@@ -35,6 +35,10 @@ class Log {
         void silly(const char *message);
 
     private:
+        Log(const Level level = INFO) : m_log_level(level) {}
+        Log(const Log&) = delete;
+        void operator=(const Log&) = delete;
+
         Level m_log_level;
         static Header m_emerg_header;
         static Header m_alert_header;
@@ -45,12 +49,6 @@ class Log {
         static Header m_info_header;
         static Header m_debug_header;
         static Header m_silly_header;
-
-        Log(const Level level = INFO) : m_log_level(level) {}
-        Log(const Log&) = delete;
-        void operator=(const Log&) = delete;
 };
-
-static Log& make_logger();
 
 #endif
