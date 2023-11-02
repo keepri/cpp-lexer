@@ -73,7 +73,7 @@ class Log {
         static void print(const char *icon, const char *header, const char *message) {
             const char *time = get_time_str();
             uint len = 5 + strlen(icon) + strlen(time) + strlen(header) + strlen(m_sep) + strlen(message);
-            char out[len];
+            char *out;
             snprintf(out, len, "%s %s %s %s %s", icon, time, header, m_sep,  message);
             clog << out << endl;
         }

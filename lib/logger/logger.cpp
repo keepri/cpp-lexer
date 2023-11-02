@@ -26,7 +26,7 @@ Log::Header Log::m_silly_header = "[SILLY]";
 
 Log& Log::set_level(const Level level) {
     m_log_level = level;
-    static Log& log = Log::get();
+    Log& log = Log::get();
     return log;
 }
 
