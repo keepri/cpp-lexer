@@ -26,60 +26,59 @@ Log::Header Log::m_silly_header = "[SILLY]";
 
 Log& Log::set_level(const Level level) {
     m_log_level = level;
-    Log& log = Log::get();
-    return log;
+    return Log::get();
 }
 
 void Log::emerg(const char *message) {
     if (m_log_level >= EMERGENCY) {
-        Log::print(m_emerg_icon, m_emerg_header, message);
+        Log::print(get_time_str(), m_emerg_icon, m_emerg_header, m_sep, message);
     }
 }
 
 void Log::alert(const char *message) {
     if (m_log_level >= ALERT) {
-        Log::print(m_alert_icon, m_alert_header, message);
+        Log::print(get_time_str(), m_alert_icon, m_alert_header, m_sep, message);
     }
 }
 
 void Log::crit(const char *message) {
     if (m_log_level >= CRITICAL) {
-        Log::print(m_crit_icon, m_crit_header, message);
+        Log::print(get_time_str(), m_crit_icon, m_crit_header, m_sep, message);
     }
 }
 
 void Log::error(const char *message) {
     if (m_log_level >= ERROR) {
-        Log::print(m_error_icon, m_error_header, message);
+        Log::print(get_time_str(), m_error_icon, m_error_header, m_sep, message);
     }
 }
 
 void Log::warn(const char *message) {
     if (m_log_level >= WARNING) {
-        Log::print(m_warning_icon, m_warning_header, message);
+        Log::print(get_time_str(), m_warning_icon, m_warning_header, m_sep, message);
     }
 }
 
 void Log::notice(const char *message) {
     if (m_log_level >= NOTICE) {
-        Log::print(m_notice_icon, m_notice_header, message);
+        Log::print(get_time_str(), m_notice_icon, m_notice_header, m_sep, message);
     }
 }
 
 void Log::info(const char *message) {
     if (m_log_level >= INFO) {
-        Log::print(m_info_icon, m_info_header, message);
+        Log::print(get_time_str(), m_info_icon, m_info_header, m_sep, message);
     }
 }
 
 void Log::debug(const char *message) {
     if (m_log_level >= DEBUG) {
-        Log::print(m_debug_icon, m_debug_header, message);
+        Log::print(get_time_str(), m_debug_icon, m_debug_header, m_sep, message);
     }
 }
 
 void Log::silly(const char *message) {
     if (m_log_level >= SILLY) {
-        Log::print(m_silly_icon, m_silly_header, message);
+        Log::print(get_time_str(), m_silly_icon, m_silly_header, m_sep, message);
     }
 }

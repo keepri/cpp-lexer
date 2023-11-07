@@ -9,4 +9,6 @@ void log_time(const char *time);
 
 char *parse_time_str(tm *date);
 
+const char *get_time_str();
+
 #endif

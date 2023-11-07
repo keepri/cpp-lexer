@@ -1,8 +1,10 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
-#include "../dates/dates.h"
+#include <cstdio>
 #include <iostream>
+
+#include "../dates/dates.h"
 
 using namespace std;
 
@@ -64,18 +66,22 @@ class Log {
         static Header m_silly_icon;
         static Header m_silly_header;
 
-        static const char *get_time_str() {
-            tm *now = date_now();
-            const char *time = parse_time_str(now);
-            return time;
+        template<typename... Args>
+        static void print(Args... a) {
+            vector<const char *> args = collect_args(a...);
+            uint len = args.size();
+            string out;
+            for (uint i = 0; i < len; ++i) {
+                const char *arg = args[i];
+                out.append(arg);
+                if (i < len - 1) out.append(" ");
+            }
+            clog << out << endl;
         }
 
-        static void print(const char *icon, const char *header, const char *message) {
-            const char *time = get_time_str();
-            uint len = 5 + strlen(icon) + strlen(time) + strlen(header) + strlen(m_sep) + strlen(message);
-            char *out;
-            snprintf(out, len, "%s %s %s %s %s", icon, time, header, m_sep,  message);
-            clog << out << endl;
+        template<typename... Args>
+        static vector<const char *> collect_args(Args... args) {
+            return {args...};
         }
 };
 
