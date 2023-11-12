@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Log::Separator Log::m_sep = "-";
+Log::Separator Log::m_sep = "~";
 Log::Header Log::m_emerg_icon = "🆘";
 Log::Header Log::m_emerg_header = "[EMERGENCY]";
 Log::Header Log::m_alert_icon = "🚨";
