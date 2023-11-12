@@ -7,6 +7,7 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    Log::get().set_level(Log::DEBUG).silly("Ok, we good!");
+    Log &log = Log::get().set_level(Log::SILLY);
+    log.silly("Ok, we good!");
     return 0;
 }

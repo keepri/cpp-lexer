@@ -1,7 +1,6 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
-#include <cstdio>
 #include <iostream>
 
 #include "../dates/dates.h"
@@ -68,21 +67,30 @@ class Log {
 
         template<typename... Args>
         static void print(Args... a) {
-            vector<const char *> args = collect_args(a...);
-            uint len = args.size();
-            string out;
-            for (uint i = 0; i < len; ++i) {
-                const char *arg = args[i];
-                out.append(arg);
-                if (i < len - 1) out.append(" ");
+            const char *args[] = {a...};
+            uint num_args = sizeof...(a);
+
+            uint total_length = 0;
+            for (uint i = 0; i < num_args; i++) {
+                total_length += strlen(args[i]);
             }
+            char out[total_length + num_args];
+
+            char *p_out = out;
+            for (uint i = 0; i < num_args; ++i) {
+                const char *arg = args[i];
+                for (uint j = 0; j < strlen(arg); j++) {
+                    *p_out++ = arg[j];
+                }
+                if (i < num_args - 1) {
+                    *p_out++ = ' ';
+                }
+            }
+            *p_out = '\0';
+
             clog << out << endl;
         }
 
-        template<typename... Args>
-        static vector<const char *> collect_args(Args... args) {
-            return {args...};
-        }
 };
 
 #endif
