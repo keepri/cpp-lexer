@@ -2,14 +2,6 @@ default:
 	make build && \
 		rm -rf *.o && \
 		./lexer
-
-compile-lexer:
-	clang++ \
-		-g \
-		-std=c++20 \
-		-c lib/lexer/lexer.cpp \
-		-o lexer.o
-
 build:
 	clang++ \
 		-g \
