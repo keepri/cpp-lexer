@@ -8,17 +8,14 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    Log &log = Log::get().set_level(Log::DEBUG);
+    Log &log = Log::get().set_level(Log::INFO);
     Lexer *lexer = new Lexer;
 
-    Lexer::VecToken token_vec =
-        lexer->tokenize("\"\"ow! \"  hi, mark!  \"n function \"caca\" else");
+    Lexer::TokenVec token_vec;
+    lexer->tokenize("\"\"ow! caca \"  hi, mark!  \"n function \"caca\" else", token_vec);
 
     for (Lexer::Token token : token_vec) {
-        log.debug("token type:", token.type);
-        if (token.value != NULL) {
-            log.debug("token value:", token.value);
-        }
+        log.info("token type:", token.type, "value:", token.value != NULL ? token.value : "NULL");
     }
 
     return 0;

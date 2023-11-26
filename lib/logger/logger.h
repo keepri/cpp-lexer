@@ -146,18 +146,18 @@ class Log {
 
         template <typename... Args> void print(Icon icon, Header header, Args... a) {
             const char *args[] = {a...};
-            uint num_args = sizeof...(a);
+            size_t num_args = sizeof...(a);
 
-            uint total_length = 0;
-            for (uint i = 0; i < num_args; i++) {
+            size_t total_length = 0;
+            for (size_t i = 0; i < num_args; i++) {
                 total_length += strlen(args[i]);
             }
             char out[total_length + num_args];
 
             char *p_out = out;
-            for (uint i = 0; i < num_args; ++i) {
+            for (size_t i = 0; i < num_args; ++i) {
                 const char *arg = args[i];
-                uint arg_len = strlen(arg);
+                size_t arg_len = strlen(arg);
 
                 memcpy(p_out, arg, arg_len);
                 p_out += arg_len;
