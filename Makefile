@@ -1,27 +1,20 @@
-default: compile-dates compile-logger
+default:
 	make build && \
 		rm -rf *.o && \
 		./lexer
 
-compile-dates:
+compile-lexer:
 	clang++ \
 		-g \
 		-std=c++20 \
-		-c lib/dates/dates.cpp \
-		-o dates.o
-
-compile-logger:
-	clang++ \
-		-g \
-		-std=c++20 \
-		-c lib/logger/logger.cpp \
-		-o logger.o
+		-c lib/lexer/lexer.cpp \
+		-o lexer.o
 
 build:
 	clang++ \
 		-g \
 		-std=c++20 \
-		main.cpp *.o \
+		main.cpp \
 		-o lexer
 
 clean:
