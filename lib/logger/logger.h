@@ -143,7 +143,7 @@ class Log {
         bool m_with_sep = true;
 
         template <typename... Args> void print(Icon icon, Header header, Args... a) {
-            using std::clog, std::endl;
+            using std::clog;
 
             const char *args[] = {a...};
             size_t num_args = sizeof...(a);
@@ -176,7 +176,7 @@ class Log {
                 clog << header << " ";
             if (m_with_sep)
                 clog << m_sep << " ";
-            clog << out << endl;
+            clog << out << '\n';
         }
 };
 

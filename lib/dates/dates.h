@@ -10,7 +10,7 @@ tm *date_now() {
 }
 
 void log_time(const char *time) {
-    std::clog << "🚀 The time is " << time << std::endl;
+    std::clog << "🚀 The time is " << time << '\n';
 }
 
 char *parse_time_str(tm *date) {
