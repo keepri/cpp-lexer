@@ -5,8 +5,6 @@
 
 #include "../dates/dates.h"
 
-using namespace std;
-
 class Log {
     public:
         typedef uint8_t Level;
@@ -145,6 +143,8 @@ class Log {
         bool m_with_sep = true;
 
         template <typename... Args> void print(Icon icon, Header header, Args... a) {
+            using std::clog, std::endl;
+
             const char *args[] = {a...};
             size_t num_args = sizeof...(a);
 
