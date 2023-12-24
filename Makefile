@@ -3,7 +3,7 @@ default:
 		rm -rf *.o && \
 		./lexer
 build:
-	clang++ \
+	g++ \
 		-g \
 		-std=c++20 \
 		main.cpp \
