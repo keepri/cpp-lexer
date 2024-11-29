@@ -3,31 +3,31 @@
 
 #include <iostream>
 
-tm *date_now() {
+tm* date_now() {
     time_t t = time(0);
-    tm *now = localtime(&t);
+    tm* now = localtime(&t);
     return now;
 }
 
-void log_time(const char *time) {
+void log_time(const char* time) {
     std::clog << "🚀 The time is " << time << '\n';
 }
 
-char *parse_time_str(tm *date) {
-    char *result = (char *)malloc(9);
+char* parse_time_str(tm* date) {
+    char* result = (char*)malloc(9);
     if (result == NULL) {
         snprintf(result, 9, "!NOTIME!");
         return result;
     }
-    snprintf(result, 9, "%02d:%02d:%02d", date->tm_hour, date->tm_min, date->tm_sec);
+    snprintf(result, 9, "%02d:%02d:%02d", date->tm_hour, date->tm_min,
+             date->tm_sec);
     return result;
 }
 
-const char *get_time_str() {
-    tm *now = date_now();
-    const char *time = parse_time_str(now);
+const char* get_time_str() {
+    tm* now = date_now();
+    const char* time = parse_time_str(now);
     return time;
 }
 
 #endif
-
